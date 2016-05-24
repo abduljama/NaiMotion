@@ -1,0 +1,102 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.abduljama.naimotion.TransitFragment">
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="90dp"
+        android:background="@color/colorPrimary"
+        android:id="@+id/relativeLayout">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start Journey"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:visibility="visible"
+            android:textStyle="bold"
+            android:background="@android:color/white"
+            android:textColor="@color/colorPrimary"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/btn_start" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.0KM"
+            android:visibility="invisible"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="21dp"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/btn_start"
+            android:layout_toStartOf="@+id/btn_start"
+            android:id="@+id/distance" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Distance"
+            android:visibility="invisible"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="19dp"
+            android:layout_below="@+id/distance"
+            android:layout_alignLeft="@+id/distance"
+            android:layout_alignStart="@+id/distance"
+            android:id="@+id/lbldistance" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="07:00"
+            android:visibility="invisible"
+            android:textSize="21dp"
+            android:textColor="@color/textColorPrimary"
+            android:textStyle="bold"
+            android:layout_above="@+id/lblduration"
+            android:layout_alignRight="@+id/lblduration"
+            android:layout_alignEnd="@+id/lblduration"
+            android:id="@+id/duration" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Duration"
+            android:visibility="invisible"
+            android:textSize="19dp"
+            android:textColor="@color/textColorPrimary"
+            android:id="@+id/lblduration"
+            android:layout_alignTop="@+id/lbldistance"
+            android:layout_centerHorizontal="true" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="End"
+            android:textSize="20dp"
+            android:visibility="invisible"
+            android:textColor="@color/colorPrimary"
+            android:padding="7dp"
+            android:textStyle="bold"
+            android:background="@android:color/white"
+            android:id="@+id/btnend"
+            android:layout_alignTop="@+id/duration"
+            android:layout_toRightOf="@+id/btn_start"
+            android:layout_toEndOf="@+id/btn_start" />
+
+    </RelativeLayout>
+
+    <com.google.android.gms.maps.MapView android:id="@+id/mapview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/relativeLayout"/>
+
+
+
+
+</RelativeLayout>

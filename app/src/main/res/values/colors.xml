@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="light_green">#3eb74e</color>
+    <color name="light_purple">#8c61b3</color>
+    <color name="light_orange">#ffb500</color>
+    <color name="light_cyan">#00BCD4</color>
+
+    <color name="colorPrimary">#D81B60</color>
+    <color name="colorPrimaryDark">#C2185B</color>
+    <color name="colorText">#4d4c4c</color>
+    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="windowBackground">#FFFFFF</color>
+    <color name="navigationBarColor">#000000</color>
+    <color name="colorAccent">#EC3523</color>
+
+    <color name="ball1">#FFD91C</color>
+    <color name="ball2">#FF4B4A</color>
+    <color name="ball3">#3D8EFF</color>
+
+    <integer-array name="colors">
+        <item>@color/ball1</item>
+        <item>@color/ball2</item>
+        <item>@color/ball3</item>
+    </integer-array>
+</resources>
