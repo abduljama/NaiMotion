@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import com.example.abduljama.naimotion.Updates.UpdatesFragment;
+
 public class MainActivity extends AppCompatActivity {
 
     DrawerLayout mDrawerLayout;
@@ -48,8 +50,8 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_item_traffic:
                         break;
                     case R.id.nav_item_updates:
-                        FragmentTransaction fmUp = mFragmentManager.beginTransaction();
-                        fmUp.replace(R.id.containerView, new TransitFragment()).commit();
+                        FragmentTransaction fmUpdates= mFragmentManager.beginTransaction();
+                        fmUpdates.replace(R.id.containerView, new UpdatesFragment()).commit();
                         getSupportActionBar().setTitle("Updates");
                         break;
                     default:

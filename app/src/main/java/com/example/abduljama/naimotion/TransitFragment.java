@@ -29,6 +29,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.maps.model.TileOverlay;
 import com.google.android.gms.maps.model.TileOverlayOptions;
+import com.google.maps.android.heatmaps.Gradient;
 import com.google.maps.android.heatmaps.HeatmapTileProvider;
 import com.google.maps.android.ui.IconGenerator;
 
@@ -51,6 +52,20 @@ public class TransitFragment extends Fragment implements GoogleMap.OnMyLocationB
     static final LatLng mombasaRoad = new LatLng(-1.3298, 36.871);
     static final LatLng langataRoad = new LatLng(-1.3363 ,36.7757);
 
+    int[] colors = {
+            Color.rgb(244, 67, 54), //  Red
+            Color.rgb(229, 115, 115)    // light red
+    };
+    float[] startPoints = {
+            0.2f, 1f
+    };
+
+     int  [] color1=  {
+             Color.rgb(239, 108 ,0),
+             Color.rgb(255,204,128)
+     };
+
+
 
     private GoogleMap map;
 
@@ -64,8 +79,8 @@ public class TransitFragment extends Fragment implements GoogleMap.OnMyLocationB
     TextView txtDistance , lblDistance , txtDuration , lblDuration ;
     private long mCallStart = 0;
 
-    TileOverlay mOverlay;
-    HeatmapTileProvider mProvider;
+    TileOverlay mOverlay ,mOverlay1;
+    HeatmapTileProvider mProvider, mProvider1;
 
 
     public TransitFragment() {
@@ -104,7 +119,7 @@ public class TransitFragment extends Fragment implements GoogleMap.OnMyLocationB
 
         }
         //  True  shows  my  location
-        map.setMyLocationEnabled(true);
+        map.setMyLocationEnabled(false);
 
    /*     Marker melbourne = map.addMarker(new MarkerOptions()
                 .position(uhuruHighway)
@@ -123,9 +138,9 @@ public class TransitFragment extends Fragment implements GoogleMap.OnMyLocationB
         marker.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
         map.addMarker(marker2);
         */
-       IconGenerator iconFactory = new IconGenerator(getActivity());
+    /*   IconGenerator iconFactory = new IconGenerator(getActivity());
        iconFactory.setStyle(IconGenerator.STYLE_ORANGE);
-       addIcon(iconFactory, "Uhuru  Highway", new LatLng(-1.2961,36.8225));
+       addIcon(iconFactory, "100+ reports ", new LatLng(-1.2961,36.8225));
 ///*
 //        iconFactory.setStyle(IconGenerator.STYLE_ORANGE);
 //        addIcon(iconFactory, "Mombasa Road", new LatLng(-1.3298, 36.871));
@@ -155,17 +170,34 @@ public class TransitFragment extends Fragment implements GoogleMap.OnMyLocationB
         triangle.add(new LatLng( -1.3141686,36.8113437));
         triangle.add(new LatLng(  -1.3133963,36.8069664));
         triangle.add(new LatLng(  -1.3054162,36.8268791));
-        triangle.add(new LatLng(   -1.3085053,36.8283382));
-        triangle.add(new LatLng(   -1.3102214,36.8291965));
-        triangle.add(new LatLng(-1.3125383,36.8153778));
-        triangle.add(new LatLng(-1.3132247,36.8137470));
-        triangle.add(new LatLng( -1.3144260,36.8106571));
-        triangle.add(new LatLng( -1.3144260,36.8082538));
-        triangle.add(new LatLng( -1.3117660,36.8061081));
+
+        ArrayList<LatLng> points= new ArrayList<>();
+        points.add(new LatLng(   -1.3085053,36.8283382));
+        points.add(new LatLng(   -1.3102214,36.8291965));
+        points.add(new LatLng(-1.3125383,36.8153778));
+        points.add(new LatLng(-1.3132247,36.8137470));
+        points.add(new LatLng( -1.3144260,36.8106571));
+        points.add(new LatLng( -1.3144260,36.8082538));
+        points.add(new LatLng( -1.3117660,36.8061081));
+      /*  Gradient g = new Gradient(color1 , startPoints);
+        mProvider1=  new HeatmapTileProvider.Builder()
+                .data(points)
+                .gradient(g)
+                .build();
+                */
+
+    //   mOverlay1=  map.addTileOverlay( new TileOverlayOptions().tileProvider(mProvider1));
+
+
+      //  Gradient gradient = new Gradient(colors, startPoints);
         mProvider = new HeatmapTileProvider.Builder()
                 .data(triangle)
+                //.gradient(gradient)
                 .build();
         mOverlay = map.addTileOverlay(new TileOverlayOptions().tileProvider(mProvider));
+     //   mProvider.setOpacity(0.7);
+     //   mOverlay.clearTileCache();
+
 
 //        iconFactory.setContentRotation(-90);
 //        iconFactory.setStyle(IconGenerator.STYLE_PURPLE);
