@@ -12,8 +12,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.example.abduljama.naimotion.Updates.UpdatesFragment;
+import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity {
+
+    // Note: Your consumer key and secret should be obfuscated in your source code before shipping.
+    private static final String TWITTER_KEY = "GiutLO9WkVKlwtvn9Vyseb7dY";
+    private static final String TWITTER_SECRET = "ouBl7HWsmbK4M2hdsVwNVMzJ87grleHTsVVHWmkRjzRRFmetrF";
+
 
     DrawerLayout mDrawerLayout;
     NavigationView mNavigationView;
@@ -24,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        TwitterAuthConfig authConfig = new TwitterAuthConfig(TWITTER_KEY, TWITTER_SECRET);
+        Fabric.with(this, new Twitter(authConfig));
         setContentView(R.layout.activity_main);
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);

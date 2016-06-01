@@ -1,9 +1,12 @@
 package com.example.abduljama.naimotion;
 
 
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
@@ -53,17 +56,13 @@ public class TransitFragment extends Fragment implements GoogleMap.OnMyLocationB
     static final LatLng langataRoad = new LatLng(-1.3363 ,36.7757);
 
     int[] colors = {
-            Color.rgb(244, 67, 54), //  Red
-            Color.rgb(229, 115, 115)    // light red
+            Color.rgb(102, 225, 0), // green
+            Color.rgb(201, 95, 121)    // red
     };
+
     float[] startPoints = {
             0.2f, 1f
     };
-
-     int  [] color1=  {
-             Color.rgb(239, 108 ,0),
-             Color.rgb(255,204,128)
-     };
 
 
 
@@ -149,53 +148,13 @@ public class TransitFragment extends Fragment implements GoogleMap.OnMyLocationB
 //        iconFactory.setStyle(IconGenerator.STYLE_RED);
 //        addIcon(iconFactory, "Langata Road", new LatLng(-1.3363 ,36.7757));
 //        */
-
-        ArrayList<LatLng> triangle = new ArrayList<>();
-        triangle.add(new LatLng( -1.304588825992221,36.82649374008179));
-        triangle.add(new LatLng(-1.300099967963058 ,  36.824299693107605));
-        triangle.add(new LatLng(-1.2996762879992767 , 36.82409048080444 ));
-        triangle.add(new LatLng(-1.2987511637807228 , 36.8239751458168));
-        triangle.add(new LatLng(-1.298233630374494, 36.82374984025955 ));
-        triangle.add(new LatLng(-1.295190102760576,  36.821936666965485));
-        triangle.add(new LatLng( -1.2929134880847413, 36.8206062912941 ));
-        triangle.add(new LatLng(  -1.292626564770991,  36.82056337594986 ));
-        triangle.add(new LatLng(  -1.29239595348597  , 36.82035148143768 ));
-        triangle.add(new LatLng(   -1.291218762995568 , 36.8197426199913 ));
-        triangle.add(new LatLng( -1.2887195777332237 , 36.81848734617233 ));
-        triangle.add(new LatLng(  -1.2867888749928875,   36.817572712898254 ));
-        triangle.add(new LatLng(-1.3124524 , 36.8160644));
-        triangle.add(new LatLng(   -1.3104789,36.8176094 ));
-        triangle.add(new LatLng(-1.3084195,36.8190685));
-        triangle.add(new LatLng( -1.3061026,36.8212143));
-        triangle.add(new LatLng( -1.3141686,36.8113437));
-        triangle.add(new LatLng(  -1.3133963,36.8069664));
-        triangle.add(new LatLng(  -1.3054162,36.8268791));
-
-        ArrayList<LatLng> points= new ArrayList<>();
-        points.add(new LatLng(   -1.3085053,36.8283382));
-        points.add(new LatLng(   -1.3102214,36.8291965));
-        points.add(new LatLng(-1.3125383,36.8153778));
-        points.add(new LatLng(-1.3132247,36.8137470));
-        points.add(new LatLng( -1.3144260,36.8106571));
-        points.add(new LatLng( -1.3144260,36.8082538));
-        points.add(new LatLng( -1.3117660,36.8061081));
-      /*  Gradient g = new Gradient(color1 , startPoints);
-        mProvider1=  new HeatmapTileProvider.Builder()
-                .data(points)
-                .gradient(g)
-                .build();
-                */
-
-    //   mOverlay1=  map.addTileOverlay( new TileOverlayOptions().tileProvider(mProvider1));
-
-
-      //  Gradient gradient = new Gradient(colors, startPoints);
+        Gradient gradient = new Gradient(colors, startPoints);
         mProvider = new HeatmapTileProvider.Builder()
-                .data(triangle)
-                //.gradient(gradient)
+                .data(getGeoCode())
+                .gradient(gradient)
                 .build();
         mOverlay = map.addTileOverlay(new TileOverlayOptions().tileProvider(mProvider));
-     //   mProvider.setOpacity(0.7);
+         mProvider.setOpacity(0.7);
      //   mOverlay.clearTileCache();
 
 
@@ -271,11 +230,12 @@ public class TransitFragment extends Fragment implements GoogleMap.OnMyLocationB
             }
         });
 
+
 //        // Updates the location and zoom of the MapView
 //        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(-1.29206590,36.82194620),13);
 //        map.animateCamera(cameraUpdate);
         // Updates the location and zoom of the MapView
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(-1.2961,36.8225),13);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(-1.2961,36.8225),14);
         map.animateCamera(cameraUpdate);
 
         return  x;
@@ -314,6 +274,74 @@ public class TransitFragment extends Fragment implements GoogleMap.OnMyLocationB
     public void onLowMemory() {
         super.onLowMemory();
         mapView.onLowMemory();
+    }
+    public  ArrayList<LatLng>  getGeoCode ()
+    {
+        ArrayList<LatLng> triangle = new ArrayList<>();
+        triangle.add(new LatLng( -1.304588825992221,36.82649374008179));
+        triangle.add(new LatLng(-1.300099967963058 ,  36.824299693107605));
+        triangle.add(new LatLng(-1.2996762879992767 , 36.82409048080444 ));
+        triangle.add(new LatLng(-1.2987511637807228 , 36.8239751458168));
+        triangle.add(new LatLng(-1.298233630374494, 36.82374984025955 ));
+        triangle.add(new LatLng(-1.295190102760576,  36.821936666965485));
+        triangle.add(new LatLng( -1.2929134880847413, 36.8206062912941 ));
+        triangle.add(new LatLng(  -1.292626564770991,  36.82056337594986 ));
+        triangle.add(new LatLng(  -1.29239595348597  , 36.82035148143768 ));
+        triangle.add(new LatLng(   -1.291218762995568 , 36.8197426199913 ));
+        triangle.add(new LatLng( -1.2887195777332237 , 36.81848734617233 ));
+        triangle.add(new LatLng(  -1.2867888749928875,   36.817572712898254 ));
+        triangle.add(new LatLng(-1.3124524 , 36.8160644));
+        triangle.add(new LatLng(   -1.3104789,36.8176094 ));
+        triangle.add(new LatLng(-1.3084195,36.8190685));
+        triangle.add(new LatLng( -1.3061026,36.8212143));
+        triangle.add(new LatLng( -1.3141686,36.8113437));
+        triangle.add(new LatLng(  -1.3133963,36.8069664));
+        triangle.add(new LatLng(  -1.3054162,36.8268791));
+        triangle.add(new LatLng(   -1.3085053,36.8283382));
+        triangle.add(new LatLng(   -1.3102214,36.8291965));
+        triangle.add(new LatLng(-1.3125383,36.8153778));
+        triangle.add(new LatLng(-1.3132247,36.8137470));
+        triangle.add(new LatLng( -1.3144260,36.8106571));
+        triangle.add(new LatLng( -1.3144260,36.8082538));
+        triangle.add(new LatLng( -1.3117660,36.8061081));
+        triangle.add(new LatLng(  -1.2894669,36.8109546));
+        triangle.add(new LatLng(  -1.2916979,36.8062339));
+        triangle.add(new LatLng(  -1.2950444,36.8025432));
+        triangle.add(new LatLng(  -1.2916979,36.8062339));
+        triangle.add(new LatLng(  -1.2950444,36.8025432));
+        triangle.add(new LatLng(   -1.2950444,36.8025432));
+        triangle.add(new LatLng(    -1.2963316,36.8024573));
+        triangle.add(new LatLng(   -1.2971897,36.8027148));
+        triangle.add(new LatLng(    -1.2975329,36.8028007));
+        triangle.add(new LatLng(   -1.2978761,36.8019423));
+        triangle.add(new LatLng(    -1.2982194,36.8005691));
+        triangle.add(new LatLng(   -1.2985626,36.7987666));
+        triangle.add(new LatLng( -1.2986055,36.7984662));
+        triangle.add(new LatLng(    -1.2992491,36.7956338));
+        triangle.add(new LatLng(   -1.2992920,36.7944751));
+        triangle.add(new LatLng(  -1.2994207,36.7930589));
+        triangle.add(new LatLng(   -1.2993778,36.7926726));
+        triangle.add(new LatLng(  -1.2995494,36.7906556));
+
+        triangle.add(new LatLng( -1.2852193,36.7889819));
+        triangle.add(new LatLng(    -1.2850906,36.7898402
+        ));
+        triangle.add(new LatLng(  -1.2850048,36.7903123
+        ));
+        triangle.add(new LatLng(   -1.2850048,36.7909560
+        ));
+        triangle.add(new LatLng(   -1.2851335,36.7919431
+        ));
+        triangle.add(new LatLng(  -1.2850906,36.7928443
+        ));
+        triangle.add(new LatLng(  -1.2851764,36.7936168
+        ));
+        triangle.add(new LatLng(   -1.2853480,36.7943463
+        ));
+        triangle.add(new LatLng(   -1.2855626,36.7952905
+        ));
+
+        return  triangle;
     }
 
 }
