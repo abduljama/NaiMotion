@@ -93,7 +93,6 @@ public class TransitFragment extends Fragment implements GoogleMap.OnMyLocationB
         View x = inflater.inflate(R.layout.fragment_transit, container, false);
         mapView = (MapView) x.findViewById(R.id.mapview);
         mapView.onCreate(savedInstanceState);
-
         btn_start=(Button)x.findViewById(R.id.btn_start);
         btn_end = (Button)x.findViewById(R.id.btnend);
         txtDistance=(TextView)x.findViewById(R.id.distance);
@@ -103,7 +102,7 @@ public class TransitFragment extends Fragment implements GoogleMap.OnMyLocationB
 
         // Gets to GoogleMap from the MapView and does initialization stuff
         map = mapView.getMap();
-        map.getUiSettings().setMyLocationButtonEnabled(false);
+      //  map.getUiSettings().setMyLocationButtonEnabled(false);
         if (ActivityCompat.checkSelfPermission(getActivity(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(getActivity(),
@@ -115,7 +114,6 @@ public class TransitFragment extends Fragment implements GoogleMap.OnMyLocationB
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
-
         }
         //  True  shows  my  location
         map.setMyLocationEnabled(false);
@@ -151,6 +149,7 @@ public class TransitFragment extends Fragment implements GoogleMap.OnMyLocationB
         Gradient gradient = new Gradient(colors, startPoints);
         mProvider = new HeatmapTileProvider.Builder()
                 .data(getGeoCode())
+                .radius(23)
                 .gradient(gradient)
                 .build();
         mOverlay = map.addTileOverlay(new TileOverlayOptions().tileProvider(mProvider));

@@ -3,18 +3,23 @@
 
     <item android:title="Transit "  android:icon="@drawable/transit"   android:id="@+id/nav_item_transit" ></item>
 
-    <item android:title="Traffic"   android:icon="@drawable/traffic" android:id="@+id/nav_item_traffic"  ></item>
+    <item android:title="Major Roads"   android:icon="@drawable/traffic" android:id="@+id/nav_item_traffic"  ></item>
     <item android:title="Updates"   android:icon="@drawable/news" android:id="@+id/nav_item_updates"/>
-
-    <item
-        android:title="Settings" android:icon="@mipmap/ic_launcher" android:id="@+id/nav_item_settings"/>
+    <!--<item
+        android:title="Quick Dial" android:icon="@drawable/dialphone" android:id="@+id/nav_item_settings"/> -->
     <item
         android:title="About Us " android:icon="@mipmap/ic_launcher" android:id="@+id/nav_item_about"/>
 
-
-
-
-
+    <item android:title="Quick Dial">
+        <menu>
+            <item
+                android:title="Ambulance" android:icon="@mipmap/ic_launcher" android:id="@+id/nav_item_gallery"/>
+            <item
+                android:title="Police " android:icon="@mipmap/ic_launcher" android:id="@+id/nav_item_sth1_here"/>
+            <item
+                android:title="Breakdown" android:icon="@mipmap/ic_launcher" android:id="@+id/nav_item_sth_here"/>
+        </menu>
+    </item>
 
 
 

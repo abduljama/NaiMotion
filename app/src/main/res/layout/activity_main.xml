@@ -44,6 +44,7 @@
             android:layout_gravity="start"
             android:id="@+id/menu"
             app:itemTextColor="@color/textColorPrimary"
+            app:itemTextAppearance="@color/textColorPrimary"
             app:itemIconTint="@color/textColorPrimary"
             app:menu="@menu/drawermenu"
             android:layout_marginTop="-24dp"
